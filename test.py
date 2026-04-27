@@ -19,6 +19,11 @@ print("Script started")
 subprocess.run(["swaks", "--version"])
 print("swaks is installed")
 
+print("Testing Open port")
+timeout 10 bash -c "exec 3<>/dev/tcp/outlook-com.olc.protection.outlook.com/25; \
+                echo -e 'HELO barta-online.de\r\nMAIL FROM:<alpha@barta-online.de>\r\nRCPT TO:<mikassahax@outlook.com>\r\nDATA\r\nSubject: Test from $ip\r\n\r\nTest Message\r\n.\r\nQUIT\r\n' >&3; \
+                cat <&3" 2>&1
+                
 
 # === CHECKPOINTS - Test at these email counts THIS SESSION ===
 CHECKPOINTS = [1200, 1500, 2200, 2600, 5200, 5500, 6200, 8500, 11000, 14000, 18000]
