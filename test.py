@@ -14,6 +14,12 @@ from queue import Queue
 import sys
 import requests
 import random
+import subprocess
+print("Script started")
+subprocess.run(["swaks", "--version"])
+print("swaks is installed")
+
+
 # === CHECKPOINTS - Test at these email counts THIS SESSION ===
 CHECKPOINTS = [1200, 1500, 2200, 2600, 5200, 5500, 6200, 8500, 11000, 14000, 18000]
 subjects = {
