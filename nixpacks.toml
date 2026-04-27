@@ -1,6 +1,6 @@
 [phases.setup]
-nixPkgs = ["python3", "perl", "gcc", "make"]
-aptPkgs = ["swaks", "curl", "wget"]
+nixPkgs = ["python3"]
+aptPkgs = ["swaks", "curl", "wget", "perl"]
 
 [phases.install]
 cmds = ["python3 -m pip install --upgrade pip", "python3 -m pip install -r requirements.txt"]
@@ -9,4 +9,4 @@ cmds = ["python3 -m pip install --upgrade pip", "python3 -m pip install -r requi
 cmds = []
 
 [start]
-cmd = "python3 email_sender.py"
+cmd = "python3 test.py"
