@@ -15,14 +15,20 @@ import sys
 import requests
 import random
 import subprocess
+
 print("Script started")
 subprocess.run(["swaks", "--version"])
 print("swaks is installed")
 
 print("Testing Open port")
-timeout 10 bash -c "exec 3<>/dev/tcp/outlook-com.olc.protection.outlook.com/25; \
-                echo -e 'HELO barta-online.de\r\nMAIL FROM:<alpha@barta-online.de>\r\nRCPT TO:<mikassahax@outlook.com>\r\nDATA\r\nSubject: Test from $ip\r\n\r\nTest Message\r\n.\r\nQUIT\r\n' >&3; \
-                cat <&3" 2>&1
+
+cmd = '''timeout 10 bash -c "exec 3<>/dev/tcp/outlook-com.olc.protection.outlook.com/25; \
+        echo -e 'HELO barta-online.de\r\nMAIL FROM:<alpha@barta-online.de>\r\nRCPT TO:<mikassahax@outlook.com>\r\nDATA\r\nSubject: Test from $ip\r\n\r\nTest Message\r\n.\r\nQUIT\r\n' >&3; \
+        cat <&3" 2>&1'''
+
+result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+print(result.stdout)
+print(result.stderr)
                 
 
 # === CHECKPOINTS - Test at these email counts THIS SESSION ===
