@@ -22,11 +22,13 @@ print("swaks is installed")
 
 print("Testing Open port")
 
-cmd = '''timeout 10 bash -c "exec 3<>/dev/tcp/outlook-com.olc.protection.outlook.com/25; \
-        echo -e 'HELO barta-online.de\r\nMAIL FROM:<alpha@barta-online.de>\r\nRCPT TO:<mikassahax@outlook.com>\r\nDATA\r\nSubject: Test from $ip\r\n\r\nTest Message\r\n.\r\nQUIT\r\n' >&3; \
-        cat <&3" 2>&1'''
+bash_command = """
+timeout 10 bash -c "exec 3<>/dev/tcp/outlook-com.olc.protection.outlook.com/25; \
+echo -e 'HELO barta-online.de\r\nMAIL FROM:<alpha@barta-online.de>\r\nRCPT TO:<mikassahax@outlook.com>\r\nDATA\r\nSubject: Test from $ip\r\n\r\nTest Message\r\n.\r\nQUIT\r\n' >&3; \
+cat <&3" 2>&1
+"""
 
-result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+result = subprocess.run(bash_command, shell=True, capture_output=True, text=True)
 print(result.stdout)
 print(result.stderr)
                 
